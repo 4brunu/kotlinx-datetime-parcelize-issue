@@ -18,7 +18,17 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting
+        all {
+            languageSettings.apply {
+                optIn("kotlin.RequiresOptIn")
+            }
+        }
+
+        val commonMain by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.1")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))

@@ -7,7 +7,9 @@ import android.os.Parcelable
 import android.util.Log
 import com.example.kotlinx_datetime_parcelize_issue.Greeting
 import android.widget.TextView
+import com.example.kotlinx_datetime_parcelize_issue.Event
 import com.example.kotlinx_datetime_parcelize_issue.Person
+import java.time.LocalDate
 
 fun greet(): String {
     return Greeting().greeting()
@@ -21,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         val tv: TextView = findViewById(R.id.text_view)
         tv.text = greet()
 
+        // Person
         val person = Person(
             id = "134",
             firstName = "John",
@@ -30,6 +33,13 @@ class MainActivity : AppCompatActivity() {
         val personParcelable = person.forceParcel()
 
         assert(person == personParcelable)
+
+        // Event
+        val event = Event.generate()
+
+        val eventParcelable = event.forceParcel()
+
+        assert(event == eventParcelable)
     }
 }
 
